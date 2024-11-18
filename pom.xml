@@ -30,7 +30,7 @@
         <repository>
             <id>lightbend-commercial</id>
             <name>Lightbend Commercial</name>
-            <url>https://repo.lightbend.com/pass/HAXfmqTSXhn_yVlzoEEyr6IfuS_Q4pe-2o_amyLFVIiAiQDM/commercial-releases
+            <url>https://repo.lightbend.com/pass/<api-key>/commercial-releases
             </url>
         </repository>
     </repositories>
