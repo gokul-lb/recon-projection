@@ -1,7 +1,7 @@
 # Kafka Consumer -> EventSourcing -> Projection
 
-This tutorial is to demonstrate the consumption messages in optimised way with `KafkaClusterSharding` and processing 
-with `EventSourcedBehavior` and finally build Views with `R2dbcProjection`.
+This tutorial demonstrates how to efficiently consume messages using `KafkaClusterSharding`, 
+process them with `EventSourcedBehavior`, and build views using `R2dbcProjection`.
 
 More Info:
 https://doc.akka.io/libraries/alpakka-kafka/current/cluster-sharding.html
