@@ -1,0 +1,5 @@
+apiVersion: 1
+
+apps:
+  - type: cinnamon-prometheus-app
+    disabled: false

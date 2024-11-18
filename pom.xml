@@ -1,0 +1,216 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>recon-projection</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>recon-projection</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <akka.version>2.10.0</akka.version>
+        <scala.binary.version>2.13</scala.binary.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <cinnamon.version>2.21.2</cinnamon.version>
+        <akka.management.version>1.6.0</akka.management.version>
+        <APP_CONFIG>application.conf</APP_CONFIG>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>akka-repository</id>
+            <name>Akka library repository</name>
+            <url>https://repo.akka.io/maven</url>
+        </repository>
+        <repository>
+            <id>lightbend-commercial</id>
+            <name>Lightbend Commercial</name>
+            <url>https://repo.lightbend.com/pass/HAXfmqTSXhn_yVlzoEEyr6IfuS_Q4pe-2o_amyLFVIiAiQDM/commercial-releases
+            </url>
+        </repository>
+    </repositories>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.typesafe.akka</groupId>
+                <artifactId>akka-bom_${scala.binary.version}</artifactId>
+                <version>2.10.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-actor-typed_${scala.binary.version}</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-stream-kafka-cluster-sharding_${scala.binary.version}</artifactId>
+            <version>7.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-cluster-sharding-typed_${scala.binary.version}</artifactId>
+            <version>${akka.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-persistence-typed_${scala.binary.version}</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-serialization-jackson_${scala.binary.version}</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.lightbend.akka</groupId>
+            <artifactId>akka-persistence-r2dbc_${scala.binary.version}</artifactId>
+            <version>1.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lightbend.akka</groupId>
+            <artifactId>akka-projection-r2dbc_${scala.binary.version}</artifactId>
+            <version>1.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lightbend.cinnamon</groupId>
+            <artifactId>cinnamon-prometheus</artifactId>
+            <version>${cinnamon.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lightbend.cinnamon</groupId>
+            <artifactId>cinnamon-prometheus-httpserver</artifactId>
+            <version>${cinnamon.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.lightbend.cinnamon</groupId>
+            <artifactId>cinnamon-akka_2.13</artifactId>
+            <version>${cinnamon.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.lightbend.cinnamon</groupId>
+            <artifactId>cinnamon-akka-persistence_2.13</artifactId>
+            <version>${cinnamon.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.lightbend.cinnamon</groupId>
+            <artifactId>cinnamon-akka-stream_2.13</artifactId>
+            <version>${cinnamon.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lightbend.cinnamon</groupId>
+            <artifactId>cinnamon-jvm-metrics-producer</artifactId>
+            <version>${cinnamon.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lightbend.akka.management</groupId>
+            <artifactId>akka-management_${scala.binary.version}</artifactId>
+            <version>${akka.management.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.lightbend.cinnamon</groupId>
+            <artifactId>cinnamon-akka-projection_2.13</artifactId>
+            <version>${cinnamon.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.typesafe.akka</groupId>
+            <artifactId>akka-persistence-testkit_${scala.binary.version}</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>17</source>
+                    <target>17</target>
+                    <compilerArgs>
+                        <arg>-Xlint:unchecked</arg>
+                        <arg>-Xlint:deprecation</arg>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.2</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.lightbend.cinnamon</groupId>
+                                    <artifactId>cinnamon-agent</artifactId>
+                                    <version>${cinnamon.version}</version>
+                                    <overWrite>true</overWrite>
+                                    <destFileName>cinnamon-agent.jar</destFileName>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>-javaagent:${project.build.directory}/dependency/cinnamon-agent.jar</argument>
+                        <argument>-Djava.library.path=target/lib</argument>
+                        <argument>-Dconfig.resource=${APP_CONFIG}</argument>
+                        <argument>-classpath</argument>
+                        <classpath/>
+                        <argument>org.wm.App</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <argLine>-javaagent:${project.build.directory}/dependency/cinnamon-agent.jar</argLine>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
