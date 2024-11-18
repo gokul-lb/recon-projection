@@ -44,7 +44,11 @@ EX:
 2. add following ENV in the run configurations C_HOST=2551;P_PORT=9001
 
 Now clone the above configurations two more time. then edit C_HOST=2552;P_PORT=9002 and C_HOST=2553;P_PORT=9003
-respectively 
+respectively.
+
+finally Add program arguments in the edit configuration with akka remote and management port.
+Ex: 2551 9551
+also, 2552 9552 and 2553 9553 in other two instances as well
 
 ### step 5
 
