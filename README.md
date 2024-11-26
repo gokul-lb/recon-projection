@@ -31,22 +31,28 @@ create `order-topic` with 10 partitions.
 
 ### step 4
 
-Edit Configure in InteliJ to run with 3 different configurations.
+Edit Configure in IntelliJ to run with 3 different configurations.
 
-``mvn complile``
+``mvn compile``
 
-the above command would have path of the `cinnamon-agent.jar` path
+the above command would have path of the `cinnamon-agent.jar` path, copy the path.
 
+![img_3.png](img_3.png)
+
+As shown in the above image, 
+
+1. Edit configuration, paste the cinnamon-agent.jar path in `VM options` by prepending `-javaagent:`.
 EX:
 -javaagent:/Users/gokul/git/walmart/recon-projection/recon-projection/target/dependency/cinnamon-agent.jar
+2. add Akka remote port and management ports in the program arguments.  
+3. add following ENV in the run configurations C_HOST=2551;P_PORT=9001
 
-1. add the above value in VM options in the run configurations.
-2. add following ENV in the run configurations C_HOST=2551;P_PORT=9001
+To run multiple instances in the cluster, clone the configuration update the ports to different in each configurations
 
 Now clone the above configurations two more time. then edit C_HOST=2552;P_PORT=9002 and C_HOST=2553;P_PORT=9003
 respectively.
 
-finally Add program arguments in the edit configuration with akka remote and management port.
+Finally Add program arguments in the edit configuration with akka remote and management port.
 Ex: 2551 9551
 also, 2552 9552 and 2553 9553 in other two instances as well
 
